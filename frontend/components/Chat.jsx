@@ -59,7 +59,7 @@ const Chat = () => {
 
   return (
     <div className="chat-container">
-      <h2>📰 News RAG Chatbot</h2>
+      <h2> News RAG Chatbot</h2>
 
       <div className="chat-box">
         {messages.map((m, i) => (
