@@ -49,7 +49,7 @@ Medical experts stress the importance of public awareness and preventive measure
 
 const seed = async () => {
   try {
-    // Delete collection if exists
+ 
     const collections = await qdrant.getCollections();
     const exists = collections.collections.some(c => c.name === "news");
     if (exists) {
@@ -57,19 +57,18 @@ const seed = async () => {
       console.log("⚠️ Old collection deleted");
     }
 
-    // Create collection
     await qdrant.createCollection("news", {
       vectors: { size: 768, distance: "Cosine" },
     });
     console.log("✅ Collection created");
 
-    // Insert points with proper embeddings
+   
     const points = [];
     for (let i = 0; i < news.length; i++) {
       console.log(`Generating embedding for: ${news[i].text}`);
       const embedding = await getEmbedding(news[i].text);
       points.push({
-        id: news[i].id, // Use integer ID (or UUID string, but not plain string)
+        id: news[i].id, 
         vector: embedding,
         payload: { text: news[i].text },
       });
@@ -84,5 +83,5 @@ const seed = async () => {
   }
 };
 
-// Run seeding when this file is executed directly
+
 seed();

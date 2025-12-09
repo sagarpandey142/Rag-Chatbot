@@ -1,4 +1,4 @@
-import { fetch } from "undici"; // Node 22+ required
+import { fetch } from "undici"; 
 import dotenv from "dotenv"
 dotenv.config()
 
@@ -17,7 +17,7 @@ export const getEmbedding = async (text) => {
     });
 
     const data = await res.json();
-    console.log("Jina API response:", JSON.stringify(data, null, 2)); // log full response
+    console.log("Jina API response:", JSON.stringify(data, null, 2)); 
 
     if (!data.data || !data.data[0] || !data.data[0].embedding) {
       throw new Error("Failed to fetch embedding from Jina API");
