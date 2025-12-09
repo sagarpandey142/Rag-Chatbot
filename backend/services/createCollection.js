@@ -1,13 +1,13 @@
 import { qdrant } from "./qdrant.js";
 
 export const createCollection = async () => {
-  // Delete the old collection if it exists
+  
   const collections = await qdrant.getCollections();
   const exists = collections.collections.some(c => c.name === "news");
 
   if (exists) {
     await qdrant.deleteCollection("news");
-    console.log("⚠️ Old collection deleted");
+    console.log("Old collection deleted");
   }
 
  
@@ -18,5 +18,5 @@ export const createCollection = async () => {
     },
   });
 
-  console.log("✅ Collection created");
+  console.log(" Collection created");
 };

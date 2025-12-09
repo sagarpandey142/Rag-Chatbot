@@ -3,7 +3,7 @@ import { getEmbedding } from "./jina.js";
 import dotenv from "dotenv";
 dotenv.config();
 
-// News data to seed the database
+
 export const news = [
   {
     id: 1,
@@ -54,13 +54,13 @@ const seed = async () => {
     const exists = collections.collections.some(c => c.name === "news");
     if (exists) {
       await qdrant.deleteCollection("news");
-      console.log("⚠️ Old collection deleted");
+      console.log(" Old collection deleted");
     }
 
     await qdrant.createCollection("news", {
       vectors: { size: 768, distance: "Cosine" },
     });
-    console.log("✅ Collection created");
+    console.log(" Collection created");
 
    
     const points = [];
@@ -77,7 +77,7 @@ const seed = async () => {
     await qdrant.upsert("news", {
       points,
     });
-    console.log(`✅ Seeded Qdrant with ${points.length} points`);
+    console.log(` Seeded Qdrant with ${points.length} points`);
   } catch (err) {
     console.error("Error seeding Qdrant:", err);
   }
